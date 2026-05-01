@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Наши тренеры</h1>
+<div class="instructors-grid">
+  {% for instructor in instructors %}
+  <div class="instructor-card" data-id="{{ instructor.id }}">
+    <img src="{{ instructor.photo.url|default:'/static/img/no-photo.png' }}" alt="{{ instructor.full_name }}">
+    <h3>{{ instructor.full_name }}</h3>
+    <p>Опыт: {{ instructor.experience }} лет</p>
+    <p>Зал: {{ instructor.gym }} </p>
+    <a href="{% url 'instructor_detail' instructor.id %}" class="btn">Подробнее</a>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+document.querySelectorAll('.instructor-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.add('active');
+    setTimeout(() => {
+      window.location.href = `/instructors/${card.dataset.id}/`;
+    }, 300);
+  });
+});
+</script>
+{% endblock %}

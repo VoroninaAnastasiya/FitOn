@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="gym-detail">
+  <div class="gym-card-detail">
+    <img class="gym-photo" src="{{ gym.photo.url }}" alt="{{ gym.address }}">
+
+    <div class="gym-info">
+      <h1>{{ gym.address }}</h1>
+      <p>{{ gym.description }}</p>
+    </div>
+  </div>
+
+  <h2>Тренировки</h2>
+  <div class="trainings-list">
+    {% for t in trainings %}
+    <div class="training-card">
+      <h3>{{ t.name }}</h3>
+      <p>Начало: {{ t.start_time }}</p>
+      <p>Длительность: {{ t.training_time }}</p>
+      <p>Тренер: {{ t.instructor.full_name }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <a href="{% url 'instructors_list' %}" class="btn btn-secondary">Наши тренеры</a>
+</section>
+{% endblock %}

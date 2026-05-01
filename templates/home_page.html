@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="network-intro">
+    <div class="container">
+        <h1 class="network-title">FITON — сеть современных фитнес‑пространств</h1>
+        <p class="network-text">
+            Мы создаём атмосферу, в которой тренировки становятся частью жизни, а не обязанностью.
+            FITON — это баланс технологий, комфорта и живой энергии тренеров.
+            Название отражает идею: <strong>FIT ON — включи фитнес в свою жизнь</strong>.
+        </p>
+    </div>
+</section>
+
+
+<section class="network-features">
+    <div class="container features-grid">
+        <div class="feature-item">
+            <h3>Современные залы</h3>
+            <p>Продуманное пространство, качественное оборудование, комфортная атмосфера.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Профессиональные тренеры</h3>
+            <p>Индивидуальный подход и поддержка на каждом этапе.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Разнообразие тренировок</h3>
+            <p>Силовые, функциональные, растяжка, кардио, групповые и персональные занятия.</p>
+        </div>
+    </div>
+</section>
+<section class="hero">
+  <div class="hero-content">
+      <section class="home-photos">
+    <div class="photos-grid">
+        <div class="photo-item">
+            <img src="{% static 'images/home/gym1.jpg' %}" alt="Фото 1">
+        </div>
+        <div class="photo-item">
+            <img src="{% static 'images/home/gym2.jpg' %}" alt="Фото 2">
+        </div>
+        <div class="photo-item">
+            <img src="{% static 'images/home/gym3.jpg' %}" alt="Фото 3">
+        </div>
+    </div>
+</section>
+
+    <h1>Выбери зал рядом с домом и начни путь к лучшей версии себя!</h1>
+    <div class="buttons">
+      <a href="{% url 'gyms_list' %}" class="btn btn-primary">Наши залы</a>
+      <a href="{% url 'instructors_list' %}" class="btn btn-secondary">Тренеры</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+    <div class="footer-map">
+        <h3>Наши филиалы на карте</h3>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A40b1a10ab77e3dcbde311f14611bd680eaf98728999e67cdb79c69b88fe4006c&amp;source=constructor" width="1000" height="500" frameborder="0"></iframe>
+
+
+    </div>
+</footer>
+{% endblock %}

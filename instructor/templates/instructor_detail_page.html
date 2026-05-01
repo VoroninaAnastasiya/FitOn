@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="instructor-detail">
+  <img src="{{ instructor.photo.url }}" alt="{{ instructor.full_name }}">
+  <h1>{{ instructor.full_name }}</h1>
+  <p>Опыт: {{ instructor.experience }} лет</p>
+
+  <h2>Тренировки</h2>
+  <ul>
+    {% for t in instructor.trainings.all %}
+    <li>{{ t.name }} — {{ t.start_time }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'instructors_list' %}" class="btn btn-secondary">Назад к списку</a>
+</section>
+{% endblock %}

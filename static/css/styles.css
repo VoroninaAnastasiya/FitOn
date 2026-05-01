@@ -1,0 +1,197 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #0D0D0D;
+    color: #F5F5F5;
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #D4AF37;
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: #FFFFFF;
+}
+.buttons {
+    display: flex;
+    justify-content: center; /* центрирование по горизонтали */
+    gap: 20px;               /* расстояние между кнопками */
+    margin-top: 20px;
+}
+.hero-content {
+    text-align: center;      /* центрирует текст */
+    max-width: 2000px;        /* чтобы текст не растягивался на всю ширину */
+    margin: 0 auto;          /* центрирует сам блок */
+    padding: 0px 0;         /* красивый вертикальный отступ */
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    background: #D4AF37;
+    color: #0D0D0D;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background: #B38E22;
+}
+
+/* Контейнер страницы деталей */
+.gym-detail {
+    max-width: 800px;
+    margin: 0 auto; /* центрирование */
+}
+
+/* Карточка зала */
+.gym-card-detail {
+    background: #1A1A1A;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* Фото зала */
+.gym-photo {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+}
+
+/* Карточки тренировок */
+.training-card {
+    background: #1A1A1A;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+
+
+.gyms-grid, .instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.gym-card, .instructor-card {
+    background: #1A1A1A;
+    border-radius: 10px;
+    padding: 16px;
+    transition: 0.3s ease;
+}
+
+.gym-card:hover, .instructor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.gym-photo {
+    width: 60%;
+    max-width: 500px;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto;
+}
+/* Описание сети */
+.network-intro {
+    background: #111;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.network-title {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.network-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* Почему FITON */
+.network-features {
+    padding: 40px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.feature-item {
+    background: #1A1A1A;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Карта */
+.footer-map {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-map h3 {
+    margin-bottom: 20px;
+}
+.home-photos {
+
+    padding: 40px 0;
+}
+
+.photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.photo-item {
+    flex: 1 1 350px;
+    background: #1A1A1A;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.photo-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+.instructor-detail img {
+    width: 300px;      /* или 200px, или 300px — выбери размер */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+.instructor-detail {
+    text-align: center;
+}
+
+

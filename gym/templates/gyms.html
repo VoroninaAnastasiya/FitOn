@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Наши залы</h1>
+<div class="gyms-grid">
+  {% for gym in gyms %}
+  <div class="gym-card" data-id="{{ gym.id }}">
+    <img src="{{ gym.photo.url }}" alt="{{ gym.address }}">
+    <h3>{{ gym.address }}</h3>
+    <p>{{ gym.description|truncatewords:20 }}</p>
+    <a href="{% url 'gym_detail' gym.id %}" class="btn">Подробнее</a>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+document.querySelectorAll('.gym-card').forEach(card => {
+  card.addEventListener('mouseenter', () => card.classList.add('hovered'));
+  card.addEventListener('mouseleave', () => card.classList.remove('hovered'));
+});
+</script>
+{% endblock %}
