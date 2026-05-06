@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="network-title" style="text-align:center; margin-bottom:30px;">
+    Расписание тренировок на неделю
+</h1>
+
+<div class="gyms-grid">
+    {% for t in trainings %}
+        <div class="training-card">
+            <h3>{{ t.name }}</h3>
+
+            <p><strong>Зал:</strong> {{ t.gym.address }}</p>
+            <p><strong>Время:</strong> {{ t.training_time }}</p>
+            <p><strong>Инструктор:</strong> {{ t.instructor.full_name }}</p>
+
+            <div style="margin-top:15px; text-align:center;">
+                <a href="{% url 'records:create_record' t.id %}" class="btn">
+                    Записаться
+                </a>
+            </div>
+        </div>
+    {% empty %}
+        <p style="text-align:center; color:#ccc;">Нет активных тренировок</p>
+    {% endfor %}
+</div>
+{% endblock %}

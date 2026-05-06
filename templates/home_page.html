@@ -48,8 +48,10 @@
 
     <h1>Выбери зал рядом с домом и начни путь к лучшей версии себя!</h1>
     <div class="buttons">
-      <a href="{% url 'gyms_list' %}" class="btn btn-primary">Наши залы</a>
-      <a href="{% url 'instructors_list' %}" class="btn btn-secondary">Тренеры</a>
+        <a href="{% url 'gyms_list' %}" class="btn btn-primary">Наши залы</a>
+        <a href="{% url 'instructors_list' %}" class="btn btn-secondary">Тренеры</a>
+        <a href="{% url 'records:week_trainings' %}" class="btn btn-primary">Расписание</a>
+        <a href="{% url 'records:my_records' %}" class="btn btn-secondary">Мои записи</a>
     </div>
   </div>
 </section>

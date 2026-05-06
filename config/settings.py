@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'authentication',
     'instructor',
     'training',
+    'user_profile',
+    'records',
 ]
 
 MIDDLEWARE = [

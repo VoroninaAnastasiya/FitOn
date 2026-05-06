@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="gym-detail">
+    <div class="gym-card-detail">
+        <h2 style="text-align:center;">Запись на тренировку</h2>
+
+        <p><strong>Зал:</strong> {{ training.gym.address }}</p>
+        <p><strong>Тренировка:</strong> {{ training.name }}</p>
+        <p><strong>Время:</strong> {{ training.training_time }}</p>
+        <p><strong>Инструктор:</strong> {{ training.instructor.full_name }}</p>
+
+        <form method="post" style="margin-top:20px;">
+            {% csrf_token %}
+
+            <label for="date">Дата:</label>
+            <input type="date" id="date" name="date"
+                   style="padding:10px; border-radius:6px; margin-top:10px; width:100%;">
+
+            <div style="text-align:center; margin-top:20px;">
+                <button type="submit" class="btn">Записаться</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
