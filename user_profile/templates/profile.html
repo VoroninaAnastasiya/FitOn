@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="profile-wrapper">
+
+    <h2 class="profile-title">Мой профиль</h2>
+
+    <div class="profile-card">
+
+        <div class="profile-left">
+            {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" alt="Фото профиля" class="profile-photo">
+            {% else %}
+                <img src="{% static 'images/default-avatar.png' %}" class="profile-photo" alt="Нет фото">
+            {% endif %}
+
+            <form action="{% url 'user_profile:delete_photo' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Удалить фото</button>
+            </form>
+        </div>
+
+        <div class="profile-right">
+            <p><strong>Имя:</strong> {{ profile.first_name }}</p>
+            <p><strong>Фамилия:</strong> {{ profile.last_name }}</p>
+            <p><strong>Телефон:</strong> {{ profile.phone_number }}</p>
+            <p><strong>Email:</strong> {{ profile.email }}</p>
+            <p><strong>Дата рождения:</strong> {{ profile.date_of_birth }}</p>
+            <p><strong>Посещаемый зал:</strong> {{ profile.fit_address }}</p>
+
+            <div class="profile-actions">
+                <a href="{% url 'user_profile:profile_edit' %}" class="btn btn-primary">Редактировать</a>
+
+                <form action="{% url 'user_profile:delete_account' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Удалить аккаунт</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

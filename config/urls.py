@@ -25,11 +25,12 @@ from gym.views import GymDetailHTMLView, GymsHTMLView, HomeHTMLView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('auth/', include('authentication.urls')),
     # path('', HomeHTMLView.as_view(), name='home_page'),
-    path('', include('gym.urls')),
+    path('gyms/', include('gym.urls')),
 
     # Тренеры
-    path('', include('instructor.urls')),
+    path('instructors/', include('instructor.urls')),
 
     path('records/', include('records.urls')),
 

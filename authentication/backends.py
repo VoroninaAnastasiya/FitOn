@@ -4,8 +4,29 @@ from django.conf import settings
 
 from rest_framework import authentication, exceptions
 from rest_framework.request import Request
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model
 
 from .models import User
+
+User = get_user_model()
+
+class EmailBackend(ModelBackend):
+    """Аутентификация по email вместо username."""
+
+    def authenticate(self, request, email=None, password=None, **kwargs):
+        if email is None or password is None:
+            return None
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return None
+
+        if user.check_password(password):
+            return user
+
+        return None
 
 
 class JWTAuthentication(authentication.BaseAuthentication):

@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title|default:"Fitness Network" }}</title>
@@ -32,6 +34,7 @@
     {% block content %}
     {% endblock %}
 </main>
+{% csrf_token %}
 </body>
 </html>
 

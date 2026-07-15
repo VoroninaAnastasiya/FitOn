@@ -3,26 +3,52 @@
 
 {% block content %}
 <h1 class="network-title" style="text-align:center; margin-bottom:30px;">
-    Расписание тренировок на неделю
+    Расписание тренировок
 </h1>
 
-<div class="gyms-grid">
+<table style="width:100%; border-collapse:collapse; background:#1A1A1A; border-radius:10px; overflow:hidden;">
+    <tr style="background:#111;">
+        <th style="padding:12px;">Дата</th>
+        <th style="padding:12px;">Время</th>
+        <th style="padding:12px;">Длительность</th>
+        <th style="padding:12px;">Тренировка</th>
+        <th style="padding:12px;">Инструктор</th>
+        <th style="padding:12px;">Зал</th>
+        <th style="padding:12px;">Действие</th>
+    </tr>
+
     {% for t in trainings %}
-        <div class="training-card">
-            <h3>{{ t.name }}</h3>
+        <tr style="border-bottom:1px solid #333;">
+            <td style="padding:12px;">{{ t.date }}</td>
+            <td style="padding:12px;">{{ t.training_time }}</td>
+            <td style="padding:12px;">{{ t.duration }} мин</td>
+            <td style="padding:12px;">{{ t.name }}</td>
+            <td style="padding:12px;">{{ t.instructor.full_name }}</td>
+            <td style="padding:12px;">{{ t.gym.address }}</td>
 
-            <p><strong>Зал:</strong> {{ t.gym.address }}</p>
-            <p><strong>Время:</strong> {{ t.training_time }}</p>
-            <p><strong>Инструктор:</strong> {{ t.instructor.full_name }}</p>
-
-            <div style="margin-top:15px; text-align:center;">
-                <a href="{% url 'records:create_record' t.id %}" class="btn">
+            <td style="padding:12px;">
+                <a href="{% url 'records:create_record' t.id %}"
+                   style="
+                       padding:8px 14px;
+                       background:#4CAF50;
+                       color:white;
+                       border-radius:6px;
+                       text-decoration:none;
+                       font-weight:600;
+                       transition:0.3s ease;
+                   "
+                   onmouseover="this.style.background='#45a049'"
+                   onmouseout="this.style.background='#4CAF50'">
                     Записаться
                 </a>
-            </div>
-        </div>
+            </td>
+        </tr>
     {% empty %}
-        <p style="text-align:center; color:#ccc;">Нет активных тренировок</p>
+        <tr>
+            <td colspan="7" style="padding:20px; text-align:center; color:#ccc;">
+                Пока нет активных тренировок
+            </td>
+        </tr>
     {% endfor %}
-</div>
+</table>
 {% endblock %}

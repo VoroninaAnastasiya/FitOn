@@ -22,3 +22,7 @@ class Instructor(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    class Meta:
+        verbose_name = "Инструктор"
+        verbose_name_plural = "Инструкторы"

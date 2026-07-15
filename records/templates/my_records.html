@@ -17,7 +17,7 @@
 
     {% for r in records %}
         <tr style="border-bottom:1px solid #333;">
-            <td style="padding:12px;">{{ r.date }}</td>
+            <td style="padding:12px;">{{ r.training.date }}</td>
             <td style="padding:12px;">{{ r.training.training_time }}</td>
             <td style="padding:12px;">{{ r.training.name }}</td>
             <td style="padding:12px;">{{ r.training.instructor.full_name }}</td>

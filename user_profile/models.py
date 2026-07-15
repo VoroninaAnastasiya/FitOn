@@ -1,9 +1,16 @@
 from django.db import models
+from django.conf import settings
+
 
 from gym.models import Gym
 
 
 class UserProfile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='profile'
+    )
     first_name = models.CharField(max_length=100, verbose_name="Имя")
     last_name = models.CharField(max_length=100, verbose_name="Фамилия")
     phone_number = models.CharField(max_length=25)
@@ -25,3 +32,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    class Meta:
+        verbose_name = "Профиль пользователя"
+        verbose_name_plural = "Профили пользователей"

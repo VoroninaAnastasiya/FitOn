@@ -31,6 +31,10 @@ class New(models.Model):
     def __str__(self):
         return self.content
 
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
+
 
 class Promotion(models.Model):
     gym = models.ForeignKey(Gym, on_delete=models.CASCADE, related_name='promotions_list')
@@ -40,3 +44,7 @@ class Promotion(models.Model):
 
     def __str__(self):
         return self.description
+
+    class Meta:
+        verbose_name = "Акция"
+        verbose_name_plural = "Акции"

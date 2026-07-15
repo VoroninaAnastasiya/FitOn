@@ -1,0 +1,80 @@
+.profile-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.profile-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.profile-card {
+    display: flex;
+    gap: 40px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.profile-left {
+    text-align: center;
+    width: 250px;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #eee;
+}
+
+.profile-right p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.profile-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.profile-edit-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.profile-edit-form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+.profile-edit-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.profile-edit-form button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #4a6cf7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
