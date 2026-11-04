@@ -95,14 +95,22 @@ class MyRecordsView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'my_records.html'
 
-    def get(self,request):
-        user_profile = get_object_or_404(UserProfile, email=request.user.email)
+    def get(self, request):
 
-        records = TrainingRecord.objects.filter(user=user_profile).select_related('training', 'training__instructor',
-                                                                                  'training__gym').order_by('training__date')
+        records = (
+            TrainingRecord.objects
+            .filter(user=request.user.profile)
+            .select_related(
+                'training',
+                'training__instructor',
+                'training__gym'
+            )
+            .order_by('training__date')
+        )
 
-        return Response({'records': records})
-
+        return Response({
+            'records': records
+        })
 # class CreateRecordView(APIView):
 #     renderer_classes = [TemplateHTMLRenderer]
 #     template_name = 'create_record.html'
