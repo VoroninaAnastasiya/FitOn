@@ -28,11 +28,26 @@ class CreateRecordView(LoginRequiredMixin, View):
     redirect_field_name = 'next'
 
     def get(self, request, training_id):
-        training = get_object_or_404(Training, id=training_id)
-        return render(request, 'records/create_record.html', {
-            'training': training,
-            'profile': request.user.profile  # теперь работает
-        })
+        training = get_object_or_404(
+            Training,
+            id=training_id
+        )
+
+        if not training.is_available_for_booking:
+            messages.error(
+                request,
+                'Запись на эту тренировку недоступна.'
+            )
+            return redirect('records:week_trainings')
+
+        return render(
+            request,
+            'create_record.html',
+            {
+                'training': training,
+                'profile': request.user.profile
+            }
+        )
 
     def post(self, request, training_id):
         training = get_object_or_404(Training, id=training_id)

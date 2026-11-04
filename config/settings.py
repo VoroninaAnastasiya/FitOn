@@ -162,3 +162,21 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 AUTH_USER_MODEL = 'authentication.User'
+
+
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'
+
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_BEAT_SCHEDULE = {
+    'check_trainings_every_minute': {
+        'task': 'records.tasks.check_trainings',
+        'schedule': 300,  # раз в ... секундах
+    },
+}
+# CELERY_REDIS_BACKEND_USE_REDISPY = True
+# CELERY_BROKER_TRANSPORT_OPTIONS = {"use_repy": True}
+
+

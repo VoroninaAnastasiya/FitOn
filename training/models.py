@@ -1,7 +1,8 @@
+from datetime import datetime
 from django.db import models
-
 from gym.models import Gym
 from instructor.models import Instructor
+from django.utils import timezone
 
 
 # class Training(models.Model):
@@ -25,7 +26,7 @@ class Training(models.Model):
     date = models.DateField(verbose_name='Дата тренировки')
     training_time = models.TimeField(verbose_name='Время тренировки')
     duration = models.PositiveIntegerField(default=60, verbose_name='Длительность (мин)')
-
+    max_participants = models.PositiveIntegerField(default=10, verbose_name='Количество мест')
     start_of_recording = models.TimeField(verbose_name='Начало записи') # todo datetime field
     activation = models.BooleanField(default=True, verbose_name='Активна')
 
@@ -35,3 +36,33 @@ class Training(models.Model):
     class Meta:
         verbose_name = "Тренировка"
         verbose_name_plural = "Тренировки"
+
+
+    @property
+    def start_datetime(self):
+        """Полная дата и время начала тренировки."""
+        return timezone.make_aware(
+            datetime.combine(
+                self.date,
+                self.training_time
+            )
+        )
+
+    @property
+    def is_finished(self):
+        """Тренировка уже прошла."""
+        return self.start_datetime < timezone.now()
+
+    @property
+    def free_places(self):
+        """Количество свободных мест."""
+        return self.max_participants - self.records.count()
+
+    @property
+    def is_available_for_booking(self):
+        """Доступна ли запись."""
+        return (
+                not self.is_finished
+                and self.free_places > 0
+                and self.activation
+        )

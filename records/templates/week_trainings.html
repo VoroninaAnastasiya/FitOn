@@ -14,6 +14,7 @@
         <th style="padding:12px;">Тренировка</th>
         <th style="padding:12px;">Инструктор</th>
         <th style="padding:12px;">Зал</th>
+        <th style="padding:12px;">Места</th>
         <th style="padding:12px;">Действие</th>
     </tr>
 
@@ -25,22 +26,29 @@
             <td style="padding:12px;">{{ t.name }}</td>
             <td style="padding:12px;">{{ t.instructor.full_name }}</td>
             <td style="padding:12px;">{{ t.gym.address }}</td>
+            <th style="padding:12px;"> {{ t.free_places }} / {{ t.max_participants }} </th>
 
             <td style="padding:12px;">
-                <a href="{% url 'records:create_record' t.id %}"
-                   style="
-                       padding:8px 14px;
-                       background:#4CAF50;
-                       color:white;
-                       border-radius:6px;
-                       text-decoration:none;
-                       font-weight:600;
-                       transition:0.3s ease;
-                   "
-                   onmouseover="this.style.background='#45a049'"
-                   onmouseout="this.style.background='#4CAF50'">
-                    Записаться
-                </a>
+
+                {% if t.is_available_for_booking %}
+                   <a href="{% url 'records:create_record' t.id %}"
+                       style="padding:8px 14px;
+                           background:#4CAF50;
+                           color:white;
+                           border-radius:6px;
+                           text-decoration:none;">
+                       Записаться
+                   </a>
+                {% elif t.is_finished %}
+                    <span style="color:#999;">
+                        Завершена
+                    </span>
+                {% else %}
+                    <span style="color:#ff6b6b;">
+                        Нет мест
+                    </span>
+                {% endif %}
+
             </td>
         </tr>
     {% empty %}
