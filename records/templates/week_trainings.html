@@ -29,16 +29,24 @@
             <th style="padding:12px;"> {{ t.free_places }} / {{ t.max_participants }} </th>
 
             <td style="padding:12px;">
-
-                {% if t.is_available_for_booking %}
-                   <a href="{% url 'records:create_record' t.id %}"
-                       style="padding:8px 14px;
-                           background:#4CAF50;
-                           color:white;
-                           border-radius:6px;
-                           text-decoration:none;">
-                       Записаться
-                   </a>
+                {% if t.user_registered %}
+                    <span style="
+                        color:#4CAF50;
+                        font-weight:bold;
+                    ">
+                        ✓ Вы записаны
+                    </span>
+                {% elif t.is_available_for_booking %}
+                    <a href="{% url 'records:create_record' t.id %}"
+                       style="
+                            padding:8px 14px;
+                            background:#4CAF50;
+                            color:white;
+                            border-radius:6px;
+                            text-decoration:none;
+                        ">
+                        Записаться
+                    </a>
                 {% elif t.is_finished %}
                     <span style="color:#999;">
                         Завершена

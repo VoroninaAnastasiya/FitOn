@@ -22,10 +22,31 @@
             <td style="padding:12px;">{{ r.training.name }}</td>
             <td style="padding:12px;">{{ r.training.instructor.full_name }}</td>
             <td style="padding:12px;">{{ r.training.gym.address }}</td>
+            <td style="padding:12px;">
+                <form
+                    method="post"
+                    action="{% url 'records:cancel_record' r.id %}"
+                >
+                    {% csrf_token %}
+                    <button
+                    type="submit"
+                    style="
+                        background:#d9534f;
+                        color:white;
+                        border:none;
+                        padding:8px 12px;
+                        border-radius:6px;
+                        cursor:pointer;
+                    "
+                >
+                    Отменить запись
+                    </button>
+                </form>
+            </td>
         </tr>
     {% empty %}
         <tr>
-            <td colspan="5" style="padding:20px; text-align:center; color:#ccc;">
+            <td colspan="6" style="padding:20px; text-align:center; color:#ccc;">
                 У вас пока нет записей
             </td>
         </tr>

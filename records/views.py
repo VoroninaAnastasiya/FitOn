@@ -7,6 +7,7 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 
+
 from user_profile.models import UserProfile
 from training.models import Training
 from records.models import TrainingRecord
@@ -19,8 +20,20 @@ class WeekTrainingView(APIView):
     def get(self, request):
         trainings = Training.objects.filter(activation = True
                                        ).select_related('instructor', 'gym').order_by('training_time')
-        print("TRAININGS:", Training.objects.filter(activation=True))
-        return Response({'trainings': trainings})
+        if request.user.is_authenticated:
+
+            user_profile = request.user.profile
+
+            for training in trainings:
+                training.user_registered = (
+                    training.records.filter(
+                        user=user_profile
+                    ).exists()
+                )
+
+        return Response({
+            'trainings': trainings
+        })
 
 
 class CreateRecordView(LoginRequiredMixin, View):
@@ -111,6 +124,26 @@ class MyRecordsView(APIView):
         return Response({
             'records': records
         })
+
+
+class CancelRecordView(LoginRequiredMixin, View):
+
+    def post(self, request, record_id):
+
+        record = get_object_or_404(
+            TrainingRecord,
+            id=record_id,
+            user=request.user.profile
+        )
+
+        record.delete()
+
+        messages.success(
+            request,
+            'Запись на тренировку отменена.'
+        )
+
+        return redirect('records:my_records')
 # class CreateRecordView(APIView):
 #     renderer_classes = [TemplateHTMLRenderer]
 #     template_name = 'create_record.html'
