@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
+from django.utils import timezone
 
 
 from user_profile.models import UserProfile
@@ -18,8 +19,23 @@ class WeekTrainingView(APIView):
     template_name = 'week_trainings.html'
 
     def get(self, request):
-        trainings = Training.objects.filter(activation = True
-                                       ).select_related('instructor', 'gym').order_by('training_time')
+        today = timezone.localdate()
+        trainings = (
+            Training.objects
+            .filter(
+                activation=True,
+                date__gte=today
+            )
+            .select_related(
+                'instructor',
+                'gym'
+            )
+            .order_by(
+                'date',
+                'training_time'
+            )
+        )
+
         if request.user.is_authenticated:
 
             user_profile = request.user.profile
@@ -34,6 +50,23 @@ class WeekTrainingView(APIView):
         return Response({
             'trainings': trainings
         })
+    # def get(self, request):
+    #     trainings = Training.objects.filter(activation = True
+    #                                    ).select_related('instructor', 'gym').order_by('training_time')
+    #     if request.user.is_authenticated:
+    #
+    #         user_profile = request.user.profile
+    #
+    #         for training in trainings:
+    #             training.user_registered = (
+    #                 training.records.filter(
+    #                     user=user_profile
+    #                 ).exists()
+    #             )
+    #
+    #     return Response({
+    #         'trainings': trainings
+    #     })
 
 
 class CreateRecordView(LoginRequiredMixin, View):
